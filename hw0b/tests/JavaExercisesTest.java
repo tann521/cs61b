@@ -64,7 +64,7 @@ public class JavaExercisesTest {
         List<Integer> result = JavaExercises.hailstone(20);
 
         assertThat(result).isNotNull();
-        assertThat(result).containsExactly(20, 10, 5, 16, 8, 4, 2, 1);
+        assertThat(result).containsExactly(20, 10, 5, 16, 8, 4, 2, 1).inOrder();
     }
 
 }

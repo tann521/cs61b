@@ -13,6 +13,7 @@ import static com.google.common.truth.Truth.assertWithMessage;
 
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 public class DessertTest {
+    @org.junit.Test
     @Test
     @Order(0)
     @DisplayName("Test Dessert class")
@@ -21,7 +22,8 @@ public class DessertTest {
         // TODO: Delete lines 24 and 60 of this file to uncomment.
         boolean completed = false;
 
-        /*
+
+
         ByteArrayOutputStream outContent = new ByteArrayOutputStream();
         System.setOut(new PrintStream(outContent));
 
@@ -56,8 +58,6 @@ public class DessertTest {
                 .that(outContent.toString().trim())
                 .isEqualTo("I love dessert!");
 
-        completed = true;
-        */
 
         // Check that assertions were run
         if (!completed) {
