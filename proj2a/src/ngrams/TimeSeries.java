@@ -1,5 +1,6 @@
 package ngrams;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.TreeMap;
 
@@ -31,6 +32,11 @@ public class TimeSeries extends TreeMap<Integer, Double> {
     public TimeSeries(TimeSeries ts, int startYear, int endYear) {
         super();
         // TODO: Fill in this constructor.
+        for (int year: ts.keySet()) {
+            if (year >= startYear && year <= endYear) {
+                this.put(year, ts.get(year));
+            }
+        }
     }
 
     /**
@@ -38,7 +44,10 @@ public class TimeSeries extends TreeMap<Integer, Double> {
      */
     public List<Integer> years() {
         // TODO: Fill in this method.
-        return null;
+        List<Integer> years = new ArrayList<>();
+        for (int key: this.keySet()) {
+            years.add(key);
+        } return years;
     }
 
     /**
@@ -47,7 +56,10 @@ public class TimeSeries extends TreeMap<Integer, Double> {
      */
     public List<Double> data() {
         // TODO: Fill in this method.
-        return null;
+        List<Double> values = new ArrayList<>();
+        for (int key: this.keySet()) {
+            values.add(this.get(key));
+        } return values;
     }
 
     /**
@@ -61,7 +73,14 @@ public class TimeSeries extends TreeMap<Integer, Double> {
      */
     public TimeSeries plus(TimeSeries ts) {
         // TODO: Fill in this method.
-        return null;
+        TimeSeries newTS = new TimeSeries();
+        for (int key: this.keySet()) {
+            if (ts.containsKey(key)) newTS.put(key, this.get(key) + ts.get(key));
+            else newTS.put(key, this.get(key));
+        } for (int key: ts.keySet()) {
+            if (!newTS.containsKey(key)) newTS.put(key, ts.get(key));
+        }
+        return newTS;
     }
 
     /**
@@ -73,9 +92,16 @@ public class TimeSeries extends TreeMap<Integer, Double> {
      * IllegalArgumentException.
      * If TS has a year that is not in this TimeSeries, ignore it.
      */
-    public TimeSeries dividedBy(TimeSeries ts) {
+    public TimeSeries dividedBy(TimeSeries ts) throws IllegalAccessException {
         // TODO: Fill in this method.
-        return null;
+        TimeSeries result = new TimeSeries();
+        for (int key: this.keySet()) {
+            if (!ts.containsKey(key)) {
+                throw new IllegalAccessException();
+            } else {
+                result.put(key, this.get(key) / ts.get(key));
+            }
+        } return result;
     }
 
     // TODO: Add any private helper methods.
